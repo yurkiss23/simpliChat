@@ -1,4 +1,5 @@
-﻿using System;
+﻿using simpliChat.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,33 @@ namespace simpliChat
     /// </summary>
     public partial class MainWindow : Window
     {
+        private EFContext _context;
+        public int Receiver { get; set; }
         public MainWindow()
         {
             InitializeComponent();
+            _context = new EFContext();
+        }
+
+        private void Border_Loaded(object sender, RoutedEventArgs e)
+        {
+            tabChat.Focus();
+            lblRecName.Content = lblRecName.Content + _context.Receivers.Where(r => r.Id == Receiver).First().Name;
+        }
+
+        private void BtnSend_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnDel_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnExit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

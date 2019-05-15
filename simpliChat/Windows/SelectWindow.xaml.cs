@@ -48,9 +48,14 @@ namespace simpliChat.Windows
 
         private void SelectedChsnged_Item(object sender, SelectionChangedEventArgs e)
         {
-            //MessageBox.Show(cbSelName.SelectedItem.ToString());
             MainWindow mainDlg = new MainWindow();
+            mainDlg.Receiver = _context.Receivers.Where(r => r.Name == cbSelName.SelectedItem.ToString()).First().Id;
             mainDlg.ShowDialog();
+        }
+
+        private void BtnExit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

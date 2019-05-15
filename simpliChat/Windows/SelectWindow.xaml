@@ -5,11 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:simpliChat.Windows"
         mc:Ignorable="d"
-        Title="SelectWindow" Height="100" Width="300" WindowStartupLocation="CenterScreen"
+        Title="SelectWindow" Height="120" Width="300" WindowStartupLocation="CenterScreen"
         Loaded="Window_Loaded">
     <StackPanel>
         <Label x:Name="lblSelName" Content="Select receiver:" HorizontalAlignment="Center"/>
-        <ComboBox x:Name="cbSelName" HorizontalContentAlignment="Center"
+        <ComboBox x:Name="cbSelName" HorizontalContentAlignment="Center" Width="250"
                   SelectionChanged="SelectedChsnged_Item"/>
+        <Button x:Name="btnExit" Content="Exit" Margin="5" Width="100" Height="20"
+                Click="BtnExit_Click"/>
     </StackPanel>
 </Window>
