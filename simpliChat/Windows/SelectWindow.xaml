@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:simpliChat.Windows"
         mc:Ignorable="d"
-        Title="SelectWindow" Height="200" Width="300" WindowStartupLocation="CenterScreen">
+        Title="SelectWindow" Height="100" Width="300" WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded">
     <StackPanel>
         <Label x:Name="lblSelName" Content="Input Name:" HorizontalAlignment="Center"/>
         <TextBox x:Name="txtSelName" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>

@@ -13,5 +13,6 @@ namespace simpliChat.Entities
         {
 
         }
+        public DbSet<Receiver> Receivers { get; set; }
     }
 }

@@ -63,6 +63,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Entities\EFContext.cs" />
+    <Compile Include="Entities\Receiver.cs" />
+    <Compile Include="Migrations\201905150012072_receiver.cs" />
+    <Compile Include="Migrations\201905150012072_receiver.Designer.cs">
+      <DependentUpon>201905150012072_receiver.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Windows\SelectWindow.xaml.cs">
       <DependentUpon>SelectWindow.xaml</DependentUpon>
@@ -98,6 +103,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\201905150012072_receiver.resx">
+      <DependentUpon>201905150012072_receiver.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
