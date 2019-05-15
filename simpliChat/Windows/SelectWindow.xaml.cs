@@ -1,4 +1,5 @@
 ﻿using simpliChat.Entities;
+using simpliChat.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace simpliChat.Windows
     public partial class SelectWindow : Window
     {
         private EFContext _context;
-        public List<Receiver> recList;
+        public List<ReceiverModel> recList;
         public SelectWindow()
         {
             InitializeComponent();
@@ -30,14 +31,26 @@ namespace simpliChat.Windows
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            recList = new List<Receiver>(
-                _context.Receivers.Select(r => new Receiver()
+            recList = new List<ReceiverModel>(
+                _context.Receivers.Select(r => new ReceiverModel()
                 {
                     Id = r.Id,
                     Name = r.Name,
                     IPAdress = r.IPAdress,
                     History = r.History
                 }).ToList());
+
+            foreach (var item in recList)
+            {
+                cbSelName.Items.Add(item.Name);
+            }
+        }
+
+        private void SelectedChsnged_Item(object sender, SelectionChangedEventArgs e)
+        {
+            //MessageBox.Show(cbSelName.SelectedItem.ToString());
+            MainWindow mainDlg = new MainWindow();
+            mainDlg.ShowDialog();
         }
     }
 }

@@ -69,6 +69,7 @@
       <DependentUpon>201905150012072_receiver.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ReceiverModel.cs" />
     <Compile Include="Windows\SelectWindow.xaml.cs">
       <DependentUpon>SelectWindow.xaml</DependentUpon>
     </Compile>

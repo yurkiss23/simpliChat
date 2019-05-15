@@ -8,7 +8,8 @@
         Title="SelectWindow" Height="100" Width="300" WindowStartupLocation="CenterScreen"
         Loaded="Window_Loaded">
     <StackPanel>
-        <Label x:Name="lblSelName" Content="Input Name:" HorizontalAlignment="Center"/>
-        <TextBox x:Name="txtSelName" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Label x:Name="lblSelName" Content="Select receiver:" HorizontalAlignment="Center"/>
+        <ComboBox x:Name="cbSelName" HorizontalContentAlignment="Center"
+                  SelectionChanged="SelectedChsnged_Item"/>
     </StackPanel>
 </Window>
