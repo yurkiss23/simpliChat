@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:simpliChat"
         mc:Ignorable="d"
-        Title="MainWindow" Height="365" Width="600" WindowStartupLocation="CenterScreen">
+        Title="Server: " Height="365" Width="600" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>

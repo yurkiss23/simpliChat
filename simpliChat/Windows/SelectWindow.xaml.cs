@@ -3,6 +3,8 @@ using simpliChat.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,10 +25,43 @@ namespace simpliChat.Windows
     {
         private EFContext _context;
         public List<ReceiverModel> recList;
+        public string EPoint { get; set; }
+        public static string RecMessage { get; set; }
         public SelectWindow()
         {
             InitializeComponent();
             _context = new EFContext();
+            Task SrvStart = new Task(ServerStart);
+            SrvStart.Start();
+        }
+
+        public void ServerStart()
+        {
+            IPAddress ip = IPAddress.Parse("127.0.0.1");
+            IPEndPoint ep = new IPEndPoint(ip, 1098);
+            EPoint = ep.ToString();
+            Socket s = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
+            s.Bind(ep);
+            s.Listen(10);
+            try
+            {
+                while (true)
+                {
+                    Socket ns = s.Accept();
+                    string data = null;
+                    byte[] bytes = new byte[1024];
+                    int bytesRec = ns.Receive(bytes);
+                    data += Encoding.UTF8.GetString(bytes, 0, bytesRec);
+                    ns.Send(Encoding.UTF8.GetBytes($"\nsend in {DateTime.Now}"));
+                    RecMessage = data + $"\nreceived in {DateTime.Now}\nfrom: {ns.RemoteEndPoint.ToString()}";
+                    ns.Shutdown(SocketShutdown.Both);
+                    ns.Close();
+                }
+            }
+            catch (SocketException ex)
+            {
+                MessageBox.Show("Socket error: " + ex.Message);
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -49,7 +84,8 @@ namespace simpliChat.Windows
         private void SelectedChsnged_Item(object sender, SelectionChangedEventArgs e)
         {
             MainWindow mainDlg = new MainWindow();
-            mainDlg.Receiver = _context.Receivers.Where(r => r.Name == cbSelName.SelectedItem.ToString()).First().Id;
+            mainDlg.RecID = _context.Receivers.Where(r => r.Name == cbSelName.SelectedItem.ToString()).First().Id;
+            mainDlg.EPoint = this.EPoint;
             mainDlg.ShowDialog();
         }
 
