@@ -27,7 +27,6 @@ namespace simpliChat
         private EFContext _context;
         public int RecID { get; set; }
         public string EPoint { get; set; }
-        //public string RecName { get; set; }
         public MainWindow()
         {
             InitializeComponent();
@@ -37,7 +36,6 @@ namespace simpliChat
         private void Border_Loaded(object sender, RoutedEventArgs e)
         {
             Title += EPoint;
-            //tabChat.Focus();
             txtSendMes.Focus();
             lblRecName.Content += _context.Receivers.Where(r => r.Id == RecID).First().Name;
         }
@@ -52,8 +50,6 @@ namespace simpliChat
                 s.Connect(ep);
                 if (s.Connected)
                 {
-                    //MessageBox.Show(txtSendMes.Text,txtSendMes.Name);
-                    //MessageBox.Show(txtReceiveMes.Text, txtReceiveMes.Name);
                     s.Send(Encoding.UTF8.GetBytes(txtSendMes.Text));
                     byte[] buffer = new byte[1024];
                     int l;
@@ -62,8 +58,6 @@ namespace simpliChat
                         l = s.Receive(buffer);
                         txtSendMes.Text += Encoding.UTF8.GetString(buffer, 0, l);
                         txtReceiveMes.Text = SelectWindow.RecMessage;
-                        //MessageBox.Show(txtSendMes.Text, txtSendMes.Name);
-                        //MessageBox.Show(txtReceiveMes.Text, txtReceiveMes.Name);
                     } while (l > 0);
                 }
             }
